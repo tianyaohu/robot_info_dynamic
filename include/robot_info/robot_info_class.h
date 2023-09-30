@@ -11,10 +11,10 @@ class RobotInfo {
 public:
   RobotInfo(){}; // default constructor
   // single vec param
-  RobotInfo(ros::NodeHandle *node_handle, std::vector<std::string> *vecValue);
+  RobotInfo(ros::NodeHandle *node_handle, const std::vector<std::string> *vecValue);
   // two vec param
-  RobotInfo(ros::NodeHandle *node_handle, std::vector<std::string> *vecName,
-            vector<std::string> *vecValue);
+  RobotInfo(ros::NodeHandle *node_handle, const std::vector<std::string> *vecName,
+            const vector<std::string> *vecValue);
   // can be moved into public?
   virtual void publish_data();
 
@@ -23,7 +23,7 @@ protected:
   robot_info::TwoStrVec msg_info;
   ros::Publisher pub_info;
 
-  void init_robot_info_msg(std::vector<std::string> *names,
-                           std::vector<std::string> *values);
+  void init_robot_info_msg(const std::vector<std::string> *names,
+                           const std::vector<std::string> *values);
   void init_robot_info_pub(); // init method for starting service
 };

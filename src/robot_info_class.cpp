@@ -2,7 +2,8 @@
 #include <ros/ros.h>
 // header file should already decleared all the messages required here.
 
-RobotInfo::RobotInfo(ros::NodeHandle *node_handle, std::vector<std::string> *vecValue) {
+RobotInfo::RobotInfo(ros::NodeHandle *node_handle,
+                     const std::vector<std::string> *vecValue) {
   // init ros node
   nh = node_handle;
   // default value names
@@ -16,8 +17,9 @@ RobotInfo::RobotInfo(ros::NodeHandle *node_handle, std::vector<std::string> *vec
 }
 
 // parameterized constructor
-RobotInfo::RobotInfo(ros::NodeHandle *node_handle, std::vector<std::string> *vecName,
-                     std::vector<std::string> *vecValue)
+RobotInfo::RobotInfo(ros::NodeHandle *node_handle,
+                     const std::vector<std::string> *vecName,
+                     const std::vector<std::string> *vecValue)
     : RobotInfo::RobotInfo(node_handle, vecValue) {
   init_robot_info_msg(vecName, vecValue);
 }
@@ -29,8 +31,8 @@ void RobotInfo::init_robot_info_pub() {
 }
 
 // init info msg
-void RobotInfo::init_robot_info_msg(std::vector<std::string> *names,
-                                    std::vector<std::string> *values) {
+void RobotInfo::init_robot_info_msg(const std::vector<std::string> *names,
+                                    const std::vector<std::string> *values) {
   msg_info.vec1 = *names;
   msg_info.vec2 = *values;
   ROS_INFO("Information message initialized");
