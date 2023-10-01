@@ -9,12 +9,10 @@ using namespace std;
 class RobotInfo {
 
 public:
-  RobotInfo(){}; // default constructor
-  // single vec param
-  RobotInfo(ros::NodeHandle *node_handle, const std::vector<std::string> *vecValue);
-  // two vec param
-  RobotInfo(ros::NodeHandle *node_handle, const std::vector<std::string> *vecName,
-            const vector<std::string> *vecValue);
+  const static std::string DEFAULT_NAMES[4];
+  // ructor
+  RobotInfo(ros::NodeHandle *node_handle, std::string *arrValue,
+            const std::string *arrName = DEFAULT_NAMES);
   // can be moved into public?
   virtual void publish_data();
 
@@ -22,8 +20,10 @@ protected:
   ros::NodeHandle *nh; // field for ros node
   robot_info::TwoStrVec msg_info;
   ros::Publisher pub_info;
+  // variable names for msg
+  const std::string *names;
+  std::string *values;
 
-  void init_robot_info_msg(const std::vector<std::string> *names,
-                           const std::vector<std::string> *values);
-  void init_robot_info_pub(); // init method for starting service
+  void init_robot_info_msg() ;
+  void init_robot_info_pub() ; 
 };
