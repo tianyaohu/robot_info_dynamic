@@ -134,7 +134,9 @@ add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(robot_info_main src/robot_info_main.cpp src/robot_info_class.cpp)
+add_executable(robot_info_node src/robot_info_main.cpp src/robot_info_class.cpp)
+add_executable(agv_robot_info_node src/agv_robot_info_main.cpp src/agv_robot_info_class.cpp)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,7 +152,8 @@ add_executable(robot_info_main src/robot_info_main.cpp src/robot_info_class.cpp)
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
-target_link_libraries(robot_info_main ${catkin_LIBRARIES} ${PROJECT_NAME})
+target_link_libraries(robot_info_node ${catkin_LIBRARIES} ${PROJECT_NAME})
+target_link_libraries(agv_robot_info_node ${catkin_LIBRARIES} ${PROJECT_NAME})
 
 #############
 ## Install ##
